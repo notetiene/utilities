@@ -1,6 +1,6 @@
 PREFIX := /usr/local
 SOURCEDIR := scripts
-SOURCE := $(notdir $(wildcard $(SOURCEDIR)/*.sh))
+SOURCE := $(notdir $(wildcard $(SOURCEDIR)/*))
 
 .PHONY: all
 all:
