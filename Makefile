@@ -1,19 +1,23 @@
-PREFIX = /usr/local
-SOURCE = pdf_job.sh cleankeys.sh
+PREFIX := /usr/local
+SOURCEDIR := scripts
+SOURCE := $(notdir $(wildcard $(SOURCEDIR)/*.sh))
 
 .PHONY: all
 all:
 	@echo "Nothing to be done. Type:\n make install"
 
 .PHONY: install
-install: $(SOURCE)
-	@mkdir -p $(PREFIX)/bin
-	@cp $< $(PREFIX)/bin/$<
-	@chmod +x $(PREFIX)/bin/$<
-	@echo "$<: installed file"
+install:
+	@for i in $(SOURCE) ; do \
+		install $(SOURCEDIR)/$$i $(PREFIX)/bin/ || break ; \
+		echo "$$i: file copied" ; \
+	done
 
 .PHONY: uninstall
-uninstall: pdf_job.sh
-	@rm -f $(PREFIX)/bin/$<
-	@echo "$<: file removed"
+uninstall:
+	@for i in $(SOURCE) ; do \
+		rm $(PREFIX)/bin/$$i || break ; \
+		echo "$(PREFIX)/bin/$$i: file removed" ; \
+	done
+
 
