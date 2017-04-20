@@ -1,8 +1,9 @@
 PREFIX = /usr/local
-SOURCE = pdf_job.sh
+SOURCE = pdf_job.sh cleankeys.sh
 
 .PHONY: all
-all: $(SOURCE)
+all:
+	@echo "Nothing to be done. Type:\n make install"
 
 .PHONY: install
 install: $(SOURCE)
